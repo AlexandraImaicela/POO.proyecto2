@@ -8,16 +8,22 @@ import javafx.fxml.Initializable;
 
 import edu.espol.clases.Hotel;
 import java.io.IOException;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 
 public class PrimaryController implements Initializable {
 
     private ArrayList<Hotel> hoteles;
+    public Hotel hotelSeleccionado;
+
     @FXML
     private BorderPane borderpane;
     @FXML
@@ -25,7 +31,15 @@ public class PrimaryController implements Initializable {
     @FXML
     private VBox content;
     @FXML
-    private Label a;
+    private Label lbcantidad;
+    @FXML
+    private Label cantidad;
+    @FXML
+    private Label lbcantidad1;
+    @FXML
+    private Label seleccionado;
+    @FXML
+    private Button addbtn;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -36,19 +50,39 @@ public class PrimaryController implements Initializable {
         Hotel.guardarHoteles();*/
         Hotel.cargarHoteles();
         hoteles = Hotel.hoteles;
-        a.setText(String.valueOf(hoteles.size()));
 
+        if (this.hotelSeleccionado == null) {
+            loadHotels();
+        } else {
+
+        }
+    }
+
+    private void loadHotels() {
+        cantidad.setText(String.valueOf(hoteles.size()));
+        content.getChildren().clear();
         for (Hotel hotel : hoteles) {
             try {
                 FXMLLoader hotelloader = new FXMLLoader(getClass().getResource("secondary.fxml"));
                 Parent hotelpanel = hotelloader.load();
                 hotelController controller = (hotelController) hotelloader.getController();
                 controller.setData(hotel.getNombre(), hotel.getCiudad(), hotel.getDireccion(), hotel.getTelefono());
-                System.out.println(controller);
                 content.getChildren().add(hotelpanel);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
         }
     }
+
+    @FXML
+    private void crearHotel(ActionEvent event) throws IOException {
+        Dialog hotelDialog = new Dialog();
+        FXMLLoader dialog = new FXMLLoader(getClass().getResource("crearHotel.fxml"));
+        Parent hotelpanel = dialog.load();
+        hotelDialog.getDialogPane().setContent(hotelpanel);
+        hotelDialog.initStyle(StageStyle.TRANSPARENT);
+        hotelDialog.show();
+        loadHotels();
+    }
 }
+
