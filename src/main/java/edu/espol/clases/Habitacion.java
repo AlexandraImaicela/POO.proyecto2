@@ -7,24 +7,34 @@ package edu.espol.clases;
 
 /**
  *
- * @author Alexandra
+ * @author Alexandra Imaicela 
  */
 public class Habitacion implements java.io.Serializable{
     
     private String numero;
     private float precio;
-    private String[] servicios;
-    private String categoria;
     
-    public Habitacion(String numero, float precio, String[] servicios, String categoria){
+    public String getEstado(){
+     return estado;
+    }
+    
+    public void setEstado(String estado){
+        this.estado=estado;
+    }
+    private String servicios;
+    private String categoria;
+    private String estado;
+    
+    public Habitacion(String numero, float precio, String servicios, String categoria){
         this.numero = numero;
         this.precio = precio;
-        this.servicios = servicios;
-        this.categoria = categoria;
+        this.servicios=servicios;
+        this.categoria=categoria;
+        estado="Disponible";
     }
     
     public Habitacion(){
-        this("", 0,new String[1],"");
+        this("", 0,"","");
     }
 
     public String getNumero() {
@@ -43,11 +53,11 @@ public class Habitacion implements java.io.Serializable{
         this.precio = precio;
     }
 
-    public String[] getServicios() {
+    public String getServicios() {
         return servicios;
     }
 
-    public void setServicios(String[] servicios) {
+    public void setServicios(String servicios) {
         this.servicios = servicios;
     }
 

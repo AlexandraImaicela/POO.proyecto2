@@ -5,6 +5,7 @@
  */
 package edu.espol.clases;
 
+import edu.espol.clases.Habitacion;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -24,14 +25,23 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 
+
 /**
  *
- * @author Alexandra
+ * @author Alexandra Imaicela
  */
 public class Hotel implements java.io.Serializable {
 
     private String nombre;
     private String ciudad;
+
+    public ArrayList<Habitacion> getHabitaciones() {
+        return habitaciones;
+    }
+
+    public void setHabitaciones(ArrayList<Habitacion> habitaciones) {
+        this.habitaciones = habitaciones;
+    }
     private String direccion;
     private String telefono;
 
@@ -44,6 +54,8 @@ public class Hotel implements java.io.Serializable {
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.telefono = telefono;
+        
+        habitaciones = new ArrayList<Habitacion>();
     }
 
     public Hotel() {
@@ -95,10 +107,6 @@ public class Hotel implements java.io.Serializable {
         } catch (IOException ex) {
         } catch (ClassNotFoundException ex) {
         }
-
-        for (Hotel hotel : hoteles) {
-            System.out.println(hotel);
-        }
     }
 
     public static void guardarHoteles() {
@@ -108,6 +116,7 @@ public class Hotel implements java.io.Serializable {
             oos.writeObject(hoteles);
             oos.close();
             fos.close();
+            System.out.println("Guardado exitoso");
         } catch (IOException ioe) {
             ioe.printStackTrace();
         }
@@ -119,3 +128,4 @@ public class Hotel implements java.io.Serializable {
     }
 
 }
+
