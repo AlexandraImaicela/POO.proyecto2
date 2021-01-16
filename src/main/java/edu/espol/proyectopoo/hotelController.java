@@ -15,7 +15,7 @@ import javafx.scene.input.MouseEvent;
 /**
  * FXML Controller class
  *
- * @author Alexandra
+ * @author Alexandra Imaicela
  */
 public class hotelController implements Initializable {
 
