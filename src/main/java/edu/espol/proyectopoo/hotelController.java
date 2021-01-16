@@ -11,6 +11,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
+import edu.espol.clases.Hotel;
+import java.io.IOException;
+import javafx.scene.Parent;
+import javafx.fxml.FXMLLoader;
 
 /**
  * FXML Controller class
@@ -18,7 +22,17 @@ import javafx.scene.input.MouseEvent;
  * @author Alexandra Imaicela
  */
 public class hotelController implements Initializable {
+    
+    private Hotel thisHotel;
 
+    public Hotel getThisHotel() {
+        return thisHotel;
+    }
+
+    public void setThisHotel(Hotel thisHotel) {
+        this.thisHotel = thisHotel;
+    }
+    
     @FXML
     private Label hotelnombre;
     @FXML
@@ -45,6 +59,7 @@ public class hotelController implements Initializable {
 
     @FXML
     private void seleccionarHotel(MouseEvent event) {
-        
+        PrimaryController.primaryController.hotelSeleccionado = thisHotel;
+        PrimaryController.primaryController.loadHabitaciones(thisHotel);
     }
 }
