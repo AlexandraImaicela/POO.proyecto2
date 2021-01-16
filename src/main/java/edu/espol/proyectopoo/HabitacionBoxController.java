@@ -5,10 +5,13 @@
  */
 package edu.espol.proyectopoo;
 
+import edu.espol.clases.Habitacion;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
@@ -21,13 +24,25 @@ public class HabitacionBoxController implements Initializable {
 
 
     @FXML
-    private Label hotelnombre;
+    private Label estado;
     @FXML
-    private Label ciudad;
+    private Label numeroHab;
     @FXML
-    private Label direccion;
+    private Label precio;
     @FXML
-    private Label telefono;
+    private Label servicios;
+    @FXML
+    private Label tipo;
+    public Habitacion habitacion;
+
+    public Habitacion getHabitacion() {
+        return habitacion;
+    }
+
+    public void setHabitacion(Habitacion habitacion) {
+        this.habitacion = habitacion;
+    }
+    
     /**
      * Initializes the controller class.
      */
@@ -38,6 +53,14 @@ public class HabitacionBoxController implements Initializable {
     
     @FXML
     private void seleccionarHotel(MouseEvent event) {
+    }
+    
+    public void setData(String numeroHab, String precio, String servicios, String tipo, String estado) {
+        this.numeroHab.setText(numeroHab);
+        this.precio.setText(precio);
+        this.servicios.setText(servicios);
+        this.tipo.setText(tipo);
+        this.estado.setText(estado);
     }
 
 }

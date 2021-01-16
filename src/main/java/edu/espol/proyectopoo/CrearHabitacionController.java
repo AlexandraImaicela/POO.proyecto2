@@ -22,7 +22,8 @@ import javafx.stage.Stage;
 /**
  * FXML Controller class
  *
- * @author 
+ * @author Alexandra Imaicela
+ * 
  */
 public class CrearHabitacionController implements Initializable {
 

@@ -58,7 +58,7 @@ public class hotelController implements Initializable {
     }
 
     @FXML
-    private void seleccionarHotel(MouseEvent event) {
+    private void seleccionarHotel(MouseEvent event) throws IOException{
         PrimaryController.primaryController.hotelSeleccionado = thisHotel;
         PrimaryController.primaryController.loadHabitaciones(thisHotel);
     }

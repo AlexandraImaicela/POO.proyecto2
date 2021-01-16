@@ -21,7 +21,7 @@ import javafx.stage.Stage;
 
 /**
  *
- * @author 
+ * @author Alexandra Imaicela
  */
 public class CrearHotelController implements Initializable {
 
@@ -67,7 +67,7 @@ public class CrearHotelController implements Initializable {
     @FXML
     private void salir(ActionEvent event) {
         Stage window = (Stage) salirbtn.getScene().getWindow();
-        PrimaryController.primaryController.loadHotels();
+        PrimaryController.primaryController.loadHabitaciones(PrimaryController.primaryController.hotelSeleccionado);
         window.close();
     }
 

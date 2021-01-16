@@ -20,6 +20,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
 
+/**
+*
+*@autor Alexandra Imaicela
+**/
+
 public class PrimaryController implements Initializable {
     
     public static PrimaryController primaryController;
@@ -57,34 +62,34 @@ public class PrimaryController implements Initializable {
         Hotel.cargarHoteles();
         hoteles = Hotel.hoteles;
         loadHotels();
-        primaryController = this;
+        primaryController = this;}
     
-        public void loadHabitaciones(Hotel hotel) {
-        lbcantidad.setText("Habitaciones cargadas");
-        lbcantidad1.setText("Habitacion seleccionada");
-        addbtn.setText("Crear Habitacion");
+    public void loadHabitaciones(Hotel hotel) {
+            lbcantidad.setText("Habitaciones cargadas");
+            lbcantidad1.setText("Habitacion seleccionada");
+            addbtn.setText("Crear Habitacion");
 
-        content.getChildren().clear();
-        if (hotelSeleccionado.getHabitaciones() == null || hotelSeleccionado.getHabitaciones().size() == 0) {
-            cantidad.setText("0");
-            content.getChildren().add(new Label("No hay habitaciones en este hotel"));
-            
-        } else {
-            cantidad.setText(String.valueOf(hotel.getHabitaciones().size()));
-            habitaciones = hotel.getHabitaciones();
-            for (Habitacion hab : hotelSeleccionado.getHabitaciones()) {
-                try {
-                    FXMLLoader habLoader = new FXMLLoader(getClass().getResource("habitacionBox.fxml"));
-                    Parent habPanel = habLoader.load();
-                    HabitacionBoxController habController = (HabitacionBoxController) habLoader.getController();
-                    habController.setData(hab.getNumero(), String.valueOf(hab.getPrecio()), hab.getServicios(), hab.getCategoria(), hab.getEstado());
-                    habController.setHabitacion(hab);
-                    content.getChildren().add(habPanel);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
+            content.getChildren().clear();
+            if (hotelSeleccionado.getHabitaciones() == null || hotelSeleccionado.getHabitaciones().size() == 0) {
+                cantidad.setText("0");
+                content.getChildren().add(new Label("No hay habitaciones en este hotel"));
+
+            } else {
+                cantidad.setText(String.valueOf(hotel.getHabitaciones().size()));
+                habitaciones = hotel.getHabitaciones();
+                for (Habitacion hab : hotelSeleccionado.getHabitaciones()) {
+                    try {
+                        FXMLLoader habLoader = new FXMLLoader(getClass().getResource("habitacionBox.fxml"));
+                        Parent habPanel = habLoader.load();
+                        HabitacionBoxController habController = (HabitacionBoxController) habLoader.getController();
+                        habController.setData(hab.getNumero(), String.valueOf(hab.getPrecio()), hab.getServicios(), hab.getCategoria(), hab.getEstado());
+                        habController.setHabitacion(hab);
+                        content.getChildren().add(habPanel);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
                 }
             }
-        }
     }
         
 
@@ -120,6 +125,6 @@ public class PrimaryController implements Initializable {
             hotelDialog.initStyle(StageStyle.TRANSPARENT);
             hotelDialog.show();
         }
-    }
-}
+    }}
+
 

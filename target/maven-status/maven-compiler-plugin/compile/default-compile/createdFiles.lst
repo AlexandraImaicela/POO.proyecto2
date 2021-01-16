@@ -1,6 +1,5 @@
 edu\espol\proyectopoo\App.class
 edu\espol\clases\Habitacion.class
-edu\espol\proyectopoo\SecondaryController.class
 module-info.class
 edu\espol\proyectopoo\hotelController.class
 edu\espol\clases\Hotel.class
