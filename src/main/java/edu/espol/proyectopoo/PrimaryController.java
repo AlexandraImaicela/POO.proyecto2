@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import edu.espol.clases.Hotel;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -19,6 +18,11 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
+import javafx.scene.control.DateCell;
+import java.time.LocalDate;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
 
 /**
 *
@@ -46,12 +50,47 @@ public class PrimaryController implements Initializable {
     @FXML
     private Label cantidad;
     @FXML
-    private Label lbcantidad1;
-    @FXML
-    private Label seleccionado;
-    @FXML
     private Button addbtn;
+    @FXML
+    private Label lbhotelSelec;
+    @FXML
+    private Label hotelSelec;
+    private Label habSelec;
+    @FXML
+    private Button inicio;
+    @FXML
+    private VBox habSelecBox;
+    @FXML
+    private VBox filtroBox;
+    @FXML
+    private Button filtrarbtn;
+    @FXML
+    private DatePicker fechaInicio;
+    @FXML
+    private DatePicker fechaFinal;
+    @FXML
+    private ComboBox<String> categoriasHab;
 
+
+    private static DatePicker inicioFecha = new DatePicker();
+    private static DatePicker finalFecha = new DatePicker(); 
+    
+    public static DatePicker getInicioFecha(){
+        return inicioFecha;
+    }
+    
+    public static void setInicioFecha(DatePicker inicioFecha) {
+        PrimaryController.inicioFecha = inicioFecha;
+    }
+    
+    public static DatePicker getFinalFecha() {
+        return finalFecha;
+    }
+
+    public static void setFinalFecha(DatePicker finalFecha) {
+        PrimaryController.finalFecha = finalFecha;
+    }
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*Hotel prueba = new Hotel("Hotel Samanes", "Guayaquil", "Samanes 7", "0993346356");
@@ -62,13 +101,20 @@ public class PrimaryController implements Initializable {
         Hotel.cargarHoteles();
         hoteles = Hotel.hoteles;
         loadHotels();
-        primaryController = this;}
+        primaryController = this;
+        categoriasHab.getItems().add("Matrimonial");
+        categoriasHab.getItems().add("Suite");
+        categoriasHab.getItems().add("Doble");
+        categoriasHab.getItems().add("Triple");
+    }
     
     public void loadHabitaciones(Hotel hotel) {
             lbcantidad.setText("Habitaciones cargadas");
-            lbcantidad1.setText("Habitacion seleccionada");
             addbtn.setText("Crear Habitacion");
-
+            hotelSelec.setText(hotel.getNombre());
+            filtroBox.setVisible(true);
+            setDate();
+            
             content.getChildren().clear();
             if (hotelSeleccionado.getHabitaciones() == null || hotelSeleccionado.getHabitaciones().size() == 0) {
                 cantidad.setText("0");
@@ -94,18 +140,25 @@ public class PrimaryController implements Initializable {
         
 
     private void loadHotels() {
-        cantidad.setText(String.valueOf(hoteles.size()));
+        lbcantidad.setText("Hoteles cargados");
+        hotelSelec.setText("Ninguno");
+        filtroBox.setVisible(false);
+        addbtn.setText("Crear Hotel");
         content.getChildren().clear();
+        cantidad.setText(String.valueOf(hoteles.size()));
+        
+        
         for (Hotel hotel : hoteles) {
             try {
-                FXMLLoader hotelloader = new FXMLLoader(getClass().getResource("secondary.fxml"));
+                FXMLLoader hotelloader = new FXMLLoader(getClass().getResource("hotelbox.fxml"));
                 Parent hotelpanel = hotelloader.load();
                 hotelController controller = (hotelController) hotelloader.getController();
                 controller.setData(hotel.getNombre(), hotel.getCiudad(), hotel.getDireccion(), hotel.getTelefono());
+                controller.setThisHotel(hotel);
                 content.getChildren().add(hotelpanel);
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                    }
         }
     }
 
@@ -125,6 +178,38 @@ public class PrimaryController implements Initializable {
             hotelDialog.initStyle(StageStyle.TRANSPARENT);
             hotelDialog.show();
         }
-    }}
+    }
+    
+    private void setDate() {
+            fechaInicio.setValue(LocalDate.now());
+
+            final Callback<DatePicker, DateCell> celdaFecha = new Callback<DatePicker, DateCell>() {
+                @Override
+                public DateCell call(final DatePicker datePicker) {
+                    return new DateCell() {
+                        @Override
+                        public void updateItem(LocalDate item, boolean empty) {
+                            super.updateItem(item, empty);
+                            if (item.isBefore(fechaInicio.getValue().plusDays(1))) {
+                                setDisable(true);
+                                setStyle("-fx-background-color: #EEEEEE;");
+                            }
+                        }
+                    };
+                }
+            };
+            fechaInicio.setDayCellFactory(celdaFecha);
+            fechaFinal.setDayCellFactory(celdaFecha);
+            fechaFinal.setValue(fechaInicio.getValue().plusDays(1));
+    }
+    @FXML
+    private void inicio(ActionEvent event) {
+        loadHotels();
+    }
+
+    @FXML
+    private void filtrar(ActionEvent event) {
+    }
+}
 
 

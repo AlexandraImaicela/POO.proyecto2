@@ -9,8 +9,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 
-
-<BorderPane fx:id="borderpane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="back-white" stylesheets="@../stylesheets/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.espol.proyectopoo.PrimaryController">
+<BorderPane fx:id="borderpane" styleClass="back-white" stylesheets="@../stylesheets/app.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.espol.proyectopoo.PrimaryController">
    <center>
       <ScrollPane fx:id="panelprincipal" fitToHeight="true" fitToWidth="true" hbarPolicy="NEVER" styleClass="back-white" BorderPane.alignment="CENTER">
          <content>
@@ -40,23 +39,79 @@
             </VBox>
             <VBox>
                <children>
-                  <Label fx:id="lbcantidad1" text="Hotel seleccionado:">
+                  <Label fx:id="lbhotelSelec" text="Hotel seleccionado:">
                      <styleClass>
                         <String fx:value="fn-14" />
                         <String fx:value="fill-grey" />
                      </styleClass>
                   </Label>
-                  <Label fx:id="seleccionado" styleClass="fn-18" text="Label" />
+                  <Label fx:id="hotelSelec" styleClass="fn-18" text="Label" />
                </children>
                <VBox.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                </VBox.margin>
             </VBox>
+            <VBox fx:id="filtroBox">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+               <children>
+                  <Label text="Filtrar">
+                     <styleClass>
+                        <String fx:value="fn-14" />
+                        <String fx:value="fill-grey" />
+                     </styleClass>
+                  </Label>
+                  <GridPane hgap="5.0" vgap="8.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" />
+                      <ColumnConstraints hgrow="SOMETIMES" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints vgrow="SOMETIMES" />
+                      <RowConstraints vgrow="SOMETIMES" />
+                      <RowConstraints vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Categoria" />
+                        <ComboBox fx:id="categoriasHab" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" />
+                        <Label text="Fecha Inicio" GridPane.rowIndex="1" />
+                        <Label text="Fecha Fin" GridPane.rowIndex="2" />
+                        <DatePicker fx:id="fechaInicio" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <DatePicker fx:id="fechaFinal" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+                  <Button fx:id="filtrarbtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#filtrar" text="Filtrar">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+                  <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Mostrar todos" VBox.vgrow="ALWAYS">
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </Button>
+               </children>
+            </VBox>
             <VBox alignment="BOTTOM_CENTER" VBox.vgrow="ALWAYS">
                <children>
-                  <VBox alignment="CENTER">
+                  <VBox alignment="BOTTOM_CENTER" layoutX="10.0" layoutY="196.0">
                      <children>
-                        <Button fx:id="addbtn" mnemonicParsing="false" onAction="#crearHotel" text="Crear Hotel" VBox.vgrow="ALWAYS">
+                        <Button fx:id="inicio" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#inicio" text="Inicio" VBox.vgrow="ALWAYS">
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </VBox.margin>
+                        </Button>
+                        <Button fx:id="addbtn" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#crearHotel" text="Crear Hotel" VBox.vgrow="ALWAYS">
                            <padding>
                               <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                            </padding>
@@ -66,7 +121,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                      </VBox.margin>
                   </VBox>
                </children>
@@ -78,4 +133,3 @@
       </VBox>
    </left>
 </BorderPane>
-
