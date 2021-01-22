@@ -139,7 +139,7 @@ public class PrimaryController implements Initializable {
     }
         
 
-    private void loadHotels() {
+    void loadHotels() {
         lbcantidad.setText("Hoteles cargados");
         hotelSelec.setText("Ninguno");
         filtroBox.setVisible(false);
