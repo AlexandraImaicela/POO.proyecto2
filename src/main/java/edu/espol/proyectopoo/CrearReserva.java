@@ -24,7 +24,7 @@ import javafx.util.Callback;
 /**
  * FXML Controller class
  *
- * @author 
+ * @NicolasCarrascoR 
  */
 public class CrearReserva implements Initializable {
 
@@ -78,14 +78,14 @@ public class CrearReserva implements Initializable {
     @FXML
     private void reservar(ActionEvent event) {
 
-       /* Reservacion reserva = new Reservacion(PrimaryController.primaryController.hotelSeleccionado, PrimaryController.primaryController.habSeleccionada,PrimaryController.getInicioFecha().getValue(), PrimaryController.getFinalFecha().getValue());
+        Reservacion reserva = new Reservacion(PrimaryController.primaryController.hotelSeleccionado, PrimaryController.primaryController.habSeleccionada,PrimaryController.getInicioFecha().getValue(), PrimaryController.getFinalFecha().getValue());
         
         reserva.setNombre(nombreCliente.getText());
         reserva.setIdentificacion(identificacionCliente.getText());
         reserva.setPaisOrigen(origenCliente.getText());
         reserva.setFormaPago(pagoCliente.getText());
                 
-        PrimaryController.primaryController.habSeleccionada.getReservas().add(reserva);*/        
+        PrimaryController.primaryController.habSeleccionada.getReservas().add(reserva);       
     }
 
 }
