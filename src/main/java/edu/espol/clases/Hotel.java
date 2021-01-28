@@ -127,5 +127,19 @@ public class Hotel implements java.io.Serializable {
         return "Hotel{" + "nombre=" + nombre + ", ciudad=" + ciudad + ", direccion=" + direccion + ", telefono=" + telefono + '}';
     }
 
-}
+    private ArrayList<Habitacion> obtenerFiltrado(String categorias, String fecha){
+        ArrayList<Habitacion> hfiltrado = new ArrayList<Habitacion>();
+        Habitacion habFiltro = new Habitacion();
+        for(Hotel hotel : this.hoteles){
+            habitaciones = hotel.habitaciones;
+            for (Habitacion habitacion: habitaciones){
+                if(habitacion.equals(habFiltro)){
+                    hfiltrado.add(habitacion);
+                }
+            }
+            
+        }
+        
+        return hfiltrado;
+}}
 
