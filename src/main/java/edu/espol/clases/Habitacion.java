@@ -32,13 +32,7 @@ public class Habitacion implements java.io.Serializable{
     }
     
     public String getEstado(){
-     return estado;
-=======
-
-    public String getEstado() {
-        return estado;
->>>>>>> ff77128e913dbad23d3662e44ab4d0b6c5d4248e
-    }
+     return estado;}
 
     public void setEstado(String estado) {
         this.estado = estado;
