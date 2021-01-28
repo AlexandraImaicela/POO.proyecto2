@@ -57,7 +57,7 @@ public class hotelController implements Initializable {
         PrimaryController.primaryController.loadHabitaciones(thisHotel);
     }
     
-
+    
     public void setData() {
         this.setData("","","",""); 
     }

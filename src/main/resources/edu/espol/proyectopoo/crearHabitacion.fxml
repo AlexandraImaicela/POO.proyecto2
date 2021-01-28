@@ -73,7 +73,7 @@
             <TextField fx:id="numeroHab" GridPane.columnIndex="1" />
             <TextField fx:id="precioHab" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextArea fx:id="serviciosHab" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="2" GridPane.vgrow="ALWAYS" />
-            <ComboBox fx:id="categoriaHab" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
+            <ComboBox fx:id="categoriaHab" maxWidth="1.7976931348623157E308" promptText="Seleccionar Categoria" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="3" />
          </children>
          <BorderPane.margin>
             <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
