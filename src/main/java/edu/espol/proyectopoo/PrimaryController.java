@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+
 import edu.espol.clases.Hotel;
 import java.io.IOException;
 import javafx.event.ActionEvent;
@@ -18,24 +19,14 @@ import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
-import javafx.scene.control.DateCell;
-import java.time.LocalDate;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-
-/**
-*
-*@autor Alexandra Imaicela
-**/
 
 public class PrimaryController implements Initializable {
-    
+
     public static PrimaryController primaryController;
-    
+
     private ArrayList<Hotel> hoteles;
     public Hotel hotelSeleccionado;
-    
+
     private ArrayList<Habitacion> habitaciones;
     public Habitacion habSeleccionada;
 
@@ -50,104 +41,59 @@ public class PrimaryController implements Initializable {
     @FXML
     private Label cantidad;
     @FXML
+    private Label lbcantidad1;
+    @FXML
+    private Label seleccionado;
+    @FXML
     private Button addbtn;
-    @FXML
-    private Label lbhotelSelec;
-    @FXML
-    private Label hotelSelec;
-    private Label habSelec;
-    @FXML
-    private Button inicio;
-    @FXML
-    private VBox habSelecBox;
-    @FXML
-    private VBox filtroBox;
-    @FXML
-    private Button filtrarbtn;
-    @FXML
-    private DatePicker fechaInicio;
-    @FXML
-    private DatePicker fechaFinal;
-    @FXML
-    private ComboBox<String> categoriasHab;
 
-
-    private static DatePicker inicioFecha = new DatePicker();
-    private static DatePicker finalFecha = new DatePicker(); 
-    
-    public static DatePicker getInicioFecha(){
-        return inicioFecha;
-    }
-    
-    public static void setInicioFecha(DatePicker inicioFecha) {
-        PrimaryController.inicioFecha = inicioFecha;
-    }
-    
-    public static DatePicker getFinalFecha() {
-        return finalFecha;
-    }
-
-    public static void setFinalFecha(DatePicker finalFecha) {
-        PrimaryController.finalFecha = finalFecha;
-    }
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*Hotel prueba = new Hotel("Hotel Samanes", "Guayaquil", "Samanes 7", "0993346356");
         Hotel prueba2 = new Hotel("Hotel Rios", "Guayaquil", "Centro", "0993558356");
         Hotel.hoteles.add(prueba2);
         Hotel.hoteles.add(prueba);
+                
         Hotel.guardarHoteles();*/
         Hotel.cargarHoteles();
         hoteles = Hotel.hoteles;
         loadHotels();
         primaryController = this;
-        categoriasHab.getItems().add("Matrimonial");
-        categoriasHab.getItems().add("Suite");
-        categoriasHab.getItems().add("Doble");
-        categoriasHab.getItems().add("Triple");
     }
-    
-    public void loadHabitaciones(Hotel hotel) {
-            lbcantidad.setText("Habitaciones cargadas");
-            addbtn.setText("Crear Habitacion");
-            hotelSelec.setText(hotel.getNombre());
-            filtroBox.setVisible(true);
-            setDate();
-            
-            content.getChildren().clear();
-            if (hotelSeleccionado.getHabitaciones() == null || hotelSeleccionado.getHabitaciones().size() == 0) {
-                cantidad.setText("0");
-                content.getChildren().add(new Label("No hay habitaciones en este hotel"));
 
-            } else {
-                cantidad.setText(String.valueOf(hotel.getHabitaciones().size()));
-                habitaciones = hotel.getHabitaciones();
-                for (Habitacion hab : hotelSeleccionado.getHabitaciones()) {
-                    try {
-                        FXMLLoader habLoader = new FXMLLoader(getClass().getResource("habitacionBox.fxml"));
-                        Parent habPanel = habLoader.load();
-                        HabitacionBoxController habController = (HabitacionBoxController) habLoader.getController();
-                        habController.setData(hab.getNumero(), String.valueOf(hab.getPrecio()), hab.getServicios(), hab.getCategoria(), hab.getEstado());
-                        habController.setHabitacion(hab);
-                        content.getChildren().add(habPanel);
-                    } catch (IOException ex) {
-                        ex.printStackTrace();
-                    }
+    public void loadHabitaciones(Hotel hotel) {
+        lbcantidad.setText("Habitaciones cargadas");
+        lbcantidad1.setText("Habitacion seleccionada");
+        addbtn.setText("Crear Habitacion");
+
+        content.getChildren().clear();
+        if (hotelSeleccionado.getHabitaciones() == null || hotelSeleccionado.getHabitaciones().size() == 0) {
+            cantidad.setText("0");
+            content.getChildren().add(new Label("No hay habitaciones en este hotel"));
+            
+        } else {
+            cantidad.setText(String.valueOf(hotel.getHabitaciones().size()));
+            habitaciones = hotel.getHabitaciones();
+            for (Habitacion hab : hotelSeleccionado.getHabitaciones()) {
+                try {
+                    FXMLLoader habLoader = new FXMLLoader(getClass().getResource("habitacionBox.fxml"));
+                    Parent habPanel = habLoader.load();
+                    HabitacionBoxController habController = (HabitacionBoxController) habLoader.getController();
+                    habController.setData(hab.getNumero(), String.valueOf(hab.getPrecio()), hab.getServicios(), hab.getCategoria(), hab.getEstado());
+                    habController.setHabitacion(hab);
+                    content.getChildren().add(habPanel);
+                } catch (IOException ex) {
+                    ex.printStackTrace();
                 }
             }
+        }
     }
-        
 
-    void loadHotels() {
-        lbcantidad.setText("Hoteles cargados");
-        hotelSelec.setText("Ninguno");
-        filtroBox.setVisible(false);
+    public void loadHotels() {
+        cantidad.setText(String.valueOf(hoteles.size()));
+        lbcantidad1.setText("Hoteles cargados");
         addbtn.setText("Crear Hotel");
         content.getChildren().clear();
-        cantidad.setText(String.valueOf(hoteles.size()));
-        
-        
         for (Hotel hotel : hoteles) {
             try {
                 FXMLLoader hotelloader = new FXMLLoader(getClass().getResource("hotelbox.fxml"));
@@ -156,9 +102,9 @@ public class PrimaryController implements Initializable {
                 controller.setData(hotel.getNombre(), hotel.getCiudad(), hotel.getDireccion(), hotel.getTelefono());
                 controller.setThisHotel(hotel);
                 content.getChildren().add(hotelpanel);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
     }
 
@@ -179,37 +125,4 @@ public class PrimaryController implements Initializable {
             hotelDialog.show();
         }
     }
-    
-    private void setDate() {
-            fechaInicio.setValue(LocalDate.now());
-
-            final Callback<DatePicker, DateCell> celdaFecha = new Callback<DatePicker, DateCell>() {
-                @Override
-                public DateCell call(final DatePicker datePicker) {
-                    return new DateCell() {
-                        @Override
-                        public void updateItem(LocalDate item, boolean empty) {
-                            super.updateItem(item, empty);
-                            if (item.isBefore(fechaInicio.getValue().plusDays(1))) {
-                                setDisable(true);
-                                setStyle("-fx-background-color: #EEEEEE;");
-                            }
-                        }
-                    };
-                }
-            };
-            fechaInicio.setDayCellFactory(celdaFecha);
-            fechaFinal.setDayCellFactory(celdaFecha);
-            fechaFinal.setValue(fechaInicio.getValue().plusDays(1));
-    }
-    @FXML
-    private void inicio(ActionEvent event) {
-        loadHotels();
-    }
-
-    @FXML
-    private void filtrar(ActionEvent event) {
-    }
 }
-
-

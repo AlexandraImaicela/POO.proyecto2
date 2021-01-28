@@ -11,12 +11,13 @@ import java.util.Objects;
 
 /**
  *
- * @author Alexandra Imaicela 
+ * @author 
  */
 public class Habitacion implements java.io.Serializable{
     
     private String numero;
     private float precio;
+<<<<<<< HEAD
     private String servicios;
     private String categoria;
     private String estado;
@@ -32,18 +33,23 @@ public class Habitacion implements java.io.Serializable{
     
     public String getEstado(){
      return estado;
+=======
+
+    public String getEstado() {
+        return estado;
+>>>>>>> ff77128e913dbad23d3662e44ab4d0b6c5d4248e
     }
-    
-    public void setEstado(String estado){
-        this.estado=estado;
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
     public Habitacion(String numero, float precio, String servicios, String categoria){
         this.numero = numero;
         this.precio = precio;
-        this.servicios=servicios;
-        this.categoria=categoria;
-        estado="Disponible";
+        this.servicios = servicios;
+        this.categoria = categoria;
+        estado = "Disponible";
     }
     
     public Habitacion(){

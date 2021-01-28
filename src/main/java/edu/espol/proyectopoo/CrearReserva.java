@@ -13,6 +13,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.DateCell;
@@ -24,9 +25,11 @@ import javafx.util.Callback;
 /**
  * FXML Controller class
  *
- * @NicolasCarrascoR
+ * @NicolasCarrascoR 
  */
 public class CrearReserva implements Initializable {
+
+    private Reservacion reserva;
 
     @FXML
     private Button crearbtn;
@@ -48,24 +51,56 @@ public class CrearReserva implements Initializable {
     private TextField origenCliente;
     @FXML
     private TextField pagoCliente;
+    @FXML
+    private TextField fechaEntrada;
+    @FXML
+    private TextField fechaSalida;
+    @FXML
+    private TextField totalPagar;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+
         hotelSelec.setDisable(true);
         numHab.setDisable(true);
         catHab.setDisable(true);
-        
+
+        fechaEntrada.setDisable(true);
+        fechaSalida.setDisable(true);
+        totalPagar.setDisable(true);
+
         hotelSelec.setText(PrimaryController.primaryController.hotelSeleccionado.getNombre());
         numHab.setText(PrimaryController.primaryController.habSeleccionada.getNumero());
         catHab.setText(PrimaryController.primaryController.habSeleccionada.getCategoria());
+
+        fechaEntrada.setText(PrimaryController.primaryController.getFechaEntrada());
+        fechaSalida.setText(PrimaryController.primaryController.getFechaSalida());
+
+        reserva = new Reservacion(PrimaryController.primaryController.hotelSeleccionado, PrimaryController.primaryController.habSeleccionada, PrimaryController.getInicioFecha().getValue(), PrimaryController.getFinalFecha().getValue());
+
+        reserva.setFechaInicio(PrimaryController.primaryController.getFechaInicio().getValue());
+        reserva.setFechaFin(PrimaryController.primaryController.getFechaFinal().getValue());
+
+        fechaEntrada.setText(reserva.getFechaInicio().toString());
+        fechaSalida.setText(reserva.getFechaFin().toString());
+
+        System.out.println(reserva.getDiferenciaFechas());
+
+        float total = PrimaryController.primaryController.habSeleccionada.getPrecio() * reserva.getDiferenciaFechas();
+        totalPagar.setText(String.valueOf(total));
+        System.out.println(total);
+
     }
 
     @FXML
     private void reiniciarbtn(ActionEvent event) {
+        nombreCliente.setText("");
+        identificacionCliente.setText("");
+        origenCliente.setText("");
+        pagoCliente.setText("");
     }
 
     @FXML
@@ -78,14 +113,25 @@ public class CrearReserva implements Initializable {
     @FXML
     private void reservar(ActionEvent event) {
 
-        Reservacion reserva = new Reservacion(PrimaryController.primaryController.hotelSeleccionado, PrimaryController.primaryController.habSeleccionada,PrimaryController.getInicioFecha().getValue(), PrimaryController.getFinalFecha().getValue());
-        
         reserva.setNombre(nombreCliente.getText());
         reserva.setIdentificacion(identificacionCliente.getText());
         reserva.setPaisOrigen(origenCliente.getText());
         reserva.setFormaPago(pagoCliente.getText());
-                
-        PrimaryController.primaryController.habSeleccionada.getReservas().add(reserva);        
+
+        PrimaryController.primaryController.habSeleccionada.getReservas().add(reserva);
+
+        Hotel.guardarHoteles();
+        
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Aviso de reserva");
+        alert.setContentText("Habitacion reservada!");
+
+        alert.showAndWait();
+
+        Stage window = (Stage) salirbtn.getScene().getWindow();
+        PrimaryController.primaryController.loadHotels();
+        window.close();
     }
 
 }
+
