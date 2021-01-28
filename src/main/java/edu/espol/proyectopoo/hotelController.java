@@ -49,17 +49,23 @@ public class hotelController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
     }
+    
+    @FXML
+    private void seleccionarHotel(MouseEvent event) throws IOException{
+        PrimaryController.primaryController.hotelSeleccionado = thisHotel;
+        System.out.println(thisHotel);
+        PrimaryController.primaryController.loadHabitaciones(thisHotel);
+    }
+    
 
+    public void setData() {
+        this.setData("","","",""); 
+    }
+    
     public void setData(String hotelnombre, String ciudad, String direccion, String telefono) {
         this.hotelnombre.setText(hotelnombre);
         this.ciudad.setText(ciudad);
         this.direccion.setText(direccion);
         this.telefono.setText(telefono);
-    }
-
-    @FXML
-    private void seleccionarHotel(MouseEvent event) throws IOException{
-        PrimaryController.primaryController.hotelSeleccionado = thisHotel;
-        PrimaryController.primaryController.loadHabitaciones(thisHotel);
-    }
+    } 
 }
