@@ -15,11 +15,9 @@ public class Reservacion {
      private Habitacion habitacion;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
-    
     private String nombre;
     private String identificacion;
     private String paisOrigen;
-
     private String formaPago;
     
     public LocalDate getFechaInicio(){
@@ -83,6 +81,20 @@ public class Reservacion {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;        
     }
+    
+    public boolean fechaReservada(LocalDate fecha){
+        if(fecha.isAfter(fechaInicio) && fecha.isBefore(fechaFin)){
+            return true;
+        } else if(fecha.isEqual(fechaInicio) || fecha.isEqual(fechaFin)){
+            return true;
+        }
+        return false;
+    }
+    
+    public int getDiferenciaFechas(){
+        return fechaFin.compareTo(fechaInicio);
+    }
+
     
     } 
 
