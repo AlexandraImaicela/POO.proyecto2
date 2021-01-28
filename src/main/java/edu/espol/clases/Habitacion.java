@@ -17,7 +17,6 @@ public class Habitacion implements java.io.Serializable{
     
     private String numero;
     private float precio;
-<<<<<<< HEAD
     private String servicios;
     private String categoria;
     private String estado;
