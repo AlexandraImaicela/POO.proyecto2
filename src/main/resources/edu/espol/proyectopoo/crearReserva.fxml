@@ -133,6 +133,46 @@
                   <TextField fx:id="pagoCliente" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                </children>
             </GridPane>
+            <Label layoutX="10.0" layoutY="145.0" text="Datos de la reserva">
+               <styleClass>
+                  <String fx:value="fill-grey" />
+                  <String fx:value="fn-24" />
+               </styleClass>
+            </Label>
+            <GridPane hgap="5.0" layoutX="10.0" layoutY="180.0" vgap="5.0">
+               <children>
+                  <Label text="Fecha de entrada">
+                     <styleClass>
+                        <String fx:value="fill-grey" />
+                        <String fx:value="fn-14" />
+                     </styleClass>
+                  </Label>
+                  <Label text="Fecha de salida" GridPane.rowIndex="1">
+                     <styleClass>
+                        <String fx:value="fill-grey" />
+                        <String fx:value="fn-14" />
+                     </styleClass>
+                  </Label>
+                  <Label text="Total de la reserva" GridPane.rowIndex="2">
+                     <styleClass>
+                        <String fx:value="fill-grey" />
+                        <String fx:value="fn-14" />
+                     </styleClass>
+                  </Label>
+                  <TextField fx:id="fechaEntrada" GridPane.columnIndex="1" />
+                  <TextField fx:id="fechaSalida" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                  <TextField fx:id="totalPagar" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+               </children>
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" />
+                  <ColumnConstraints hgrow="SOMETIMES" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+                  <RowConstraints vgrow="SOMETIMES" />
+               </rowConstraints>
+            </GridPane>
          </children>
          <BorderPane.margin>
             <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
