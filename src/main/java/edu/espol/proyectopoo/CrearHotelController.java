@@ -67,7 +67,7 @@ public class CrearHotelController implements Initializable {
     @FXML
     private void salir(ActionEvent event) {
         Stage window = (Stage) salirbtn.getScene().getWindow();
-        PrimaryController.primaryController.loadHabitaciones(PrimaryController.primaryController.hotelSeleccionado);
+        PrimaryController.primaryController.loadHotels();
         window.close();
     }
 
