@@ -11,14 +11,24 @@ import java.time.LocalDate;
  *
  * @author Alexandra Imaicela
  */
-public class Reservacion {
-     private Habitacion habitacion;
+public class Reservacion implements java.io.Serializable{
+    
+    private Habitacion habitacion;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private String nombre;
     private String identificacion;
     private String paisOrigen;
     private String formaPago;
+    private String Estado;
+    
+     public String getEstado() {
+        return Estado;
+    }
+
+    public void setEstado(String Estado) {
+        this.Estado = Estado;
+    }
     
     public LocalDate getFechaInicio(){
         return fechaInicio;
@@ -79,11 +89,14 @@ public class Reservacion {
     public Reservacion(Hotel hotel,Habitacion habitacion, LocalDate fechaInicio, LocalDate fechaFin){
         this.habitacion = habitacion;
         this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;        
+        this.fechaFin = fechaFin; 
+        this.Estado = "Check-In";
     }
     
     public boolean fechaReservada(LocalDate fecha){
-        if(fecha.isAfter(fechaInicio) && fecha.isBefore(fechaFin)){
+        if (this.Estado.equals("Reserva finalizada")){
+            return true;
+        }else if(fecha.isAfter(fechaInicio) && fecha.isBefore(fechaFin)){
             return true;
         } else if(fecha.isEqual(fechaInicio) || fecha.isEqual(fechaFin)){
             return true;
