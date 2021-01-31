@@ -11,7 +11,7 @@ import java.util.Objects;
 
 /**
  *
- * @author 
+ * @author Alexandra Imaicela
  */
 public class Habitacion implements java.io.Serializable{
     
