@@ -21,7 +21,7 @@ import javafx.fxml.FXMLLoader;
  *
  * @author Alexandra Imaicela
  */
-public class hotelController implements Initializable{
+public class hotelController implements Initializable, Configurable {
     
     private Hotel thisHotel;
 
@@ -57,7 +57,7 @@ public class hotelController implements Initializable{
         PrimaryController.primaryController.loadHabitaciones(thisHotel);
     }
     
-    
+    @Override
     public void setData() {
         this.setData("","","",""); 
     }
