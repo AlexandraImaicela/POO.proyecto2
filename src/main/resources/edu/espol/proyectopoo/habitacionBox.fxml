@@ -10,56 +10,68 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
 
-<BorderPane id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#seleccionarHotel" styleClass="back-light-grey" stylesheets="@../../../../../../../proyecto/src/main/resources/edu/espol/stylesheets/primary.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.espol.proyectopoo.HabitacionBoxController">
+<BorderPane id="pane" fx:id="habBox" onMouseClicked="#seleccionarHabitacion" styleClass="back-light-grey" stylesheets="@../../../../../../../proyecto/src/main/resources/edu/espol/stylesheets/primary.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.espol.proyectopoo.HabitacionBoxController">
    <left>
-      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-         <image>
-            <Image url="@../imagenes/hotel.png" />
-         </image>
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <image>
+                  <Image url="@../imagenes/hotel.png" />
+               </image>
+               <BorderPane.margin>
+                  <Insets right="20.0" />
+               </BorderPane.margin>
+            </ImageView>
+            <Button fx:id="verReservas" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#mostrarReservas" text="Ver reservas" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </VBox.margin>
+            </Button>
+         </children>
          <BorderPane.margin>
-            <Insets right="20.0" />
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
          </BorderPane.margin>
-      </ImageView>
+      </VBox>
    </left>
    <center>
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="300.0" BorderPane.alignment="CENTER">
          <children>
-            <Label id="hotelname" fx:id="hotelnombre" styleClass="fn-24">
+            <Label id="hotelname" fx:id="numeroHab" styleClass="fn-24">
                <padding>
                   <Insets top="5.0" />
                </padding>
             </Label>
             <VBox>
                <children>
-                  <Label text="Ciudad">
+                  <Label text="Precio por noche">
                      <styleClass>
                         <String fx:value="fn-16" />
                         <String fx:value="fill-grey" />
                      </styleClass>
                   </Label>
-                  <Label id="ciudad" fx:id="ciudad" styleClass="fn-18" />
+                  <Label id="ciudad" fx:id="precio" styleClass="fn-18" />
                </children>
             </VBox>
             <VBox>
                <children>
-                  <Label text="Direccion">
+                  <Label text="Servicios">
                      <styleClass>
                         <String fx:value="fn-16" />
                         <String fx:value="fill-grey" />
                      </styleClass>
                   </Label>
-                  <Label id="direccion" fx:id="direccion" styleClass="fn-18" />
+                  <Label id="direccion" fx:id="servicios" styleClass="fn-18" />
                </children>
             </VBox>
             <VBox>
                <children>
-                  <Label text="Telefono">
+                  <Label text="Tipo de habitacion">
                      <styleClass>
                         <String fx:value="fn-16" />
                         <String fx:value="fill-grey" />
                      </styleClass>
                   </Label>
-                  <Label id="telefono" fx:id="telefono" styleClass="fn-18" />
+                  <Label id="telefono" fx:id="tipo" styleClass="fn-18" />
                </children>
             </VBox>
          </children>
@@ -71,7 +83,14 @@
          </BorderPane.margin>
       </VBox>
    </center>
-   <padding>
-      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-   </padding>
+   <bottom>
+      <HBox alignment="CENTER" BorderPane.alignment="CENTER">
+         <children>
+            <Label fx:id="estado" text="ESTADO" />
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+      </HBox>
+   </bottom>
 </BorderPane>
