@@ -19,7 +19,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.VBox;
 
 /**
- * 
+ * FXML Controller classC:\Users\Kevin\Documents\NetBeansProjects\proyectopoo\src\main\java\edu\espol\saves\reservasPanel.java
  *
  * @author 
  */
@@ -45,3 +45,4 @@ public class reservasPanel implements Initializable {
     }
 
 }
+
