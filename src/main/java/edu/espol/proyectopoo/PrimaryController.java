@@ -146,6 +146,10 @@ public class PrimaryController implements Initializable {
         cantidad.setText(String.valueOf(hoteles.size()));
         addbtn.setText("Crear Hotel");
         content.getChildren().clear();
+
+        hotelSelec.setText("Ninguno");
+        filtroBox.setVisible(false);
+
         for (Hotel hotel : hoteles) {
             try {
                 FXMLLoader hotelloader = new FXMLLoader(getClass().getResource("hotelbox.fxml"));
@@ -161,7 +165,7 @@ public class PrimaryController implements Initializable {
     }
 
     
-       private void setDate() {
+    private void setDate() {
         fechaInicio.setValue(LocalDate.now());
 
         final Callback<DatePicker, DateCell> celdaFecha = new Callback<DatePicker, DateCell>() {
@@ -280,5 +284,24 @@ public class PrimaryController implements Initializable {
     @FXML
     private void mostrarTodos(ActionEvent event) {
         loadHabitaciones(this.hotelSeleccionado);
+    }
+    
+    public void mostrarReservas() {
+        filtroBox.setVisible(false);
+        content.getChildren().clear();
+
+        for (Reservacion reserva : this.habSeleccionada.getReservas()) {
+            try {
+                FXMLLoader reservaLoader = new FXMLLoader(getClass().getResource("reservasBox.fxml"));
+                Parent reservaPanel = reservaLoader.load();
+                reservasBoxController controller = (reservasBoxController) reservaLoader.getController();
+                controller.setData(reserva.getNombre(), reserva.getFechaInicio().toString(), reserva.getFechaFin().toString());
+                controller.setThisReserva(reserva);
+                content.getChildren().add(reservaPanel);
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
     }
 }
