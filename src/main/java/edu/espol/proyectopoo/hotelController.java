@@ -21,7 +21,7 @@ import javafx.fxml.FXMLLoader;
  *
  * @author Alexandra Imaicela
  */
-public class hotelController implements Initializable {
+public class hotelController implements Initializable{
     
     private Hotel thisHotel;
 
