@@ -283,7 +283,6 @@ public class PrimaryController implements Initializable {
     private void mostrarTodos(ActionEvent event) {
         loadHabitaciones(this.hotelSeleccionado);
     }
-
     public void mostrarReservas() {
         filtroBox.setVisible(false);
         content.getChildren().clear();
