@@ -81,7 +81,7 @@ public class reservasBoxController implements Initializable, Configurable {
     @FXML
     private void seleccionarHotel(MouseEvent event) {
     }
-
+    @Override
     public void setData() {
         this.setData("", "", ""); //To change body of generated methods, choose Tools | Templates.
     }
