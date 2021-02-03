@@ -127,11 +127,23 @@ public class PrimaryController implements Initializable {
             cantidad.setText(String.valueOf(hotel.getHabitaciones().size()));
             habitaciones = hotel.getHabitaciones();
             for (Habitacion hab : hotelSeleccionado.getHabitaciones()) {
+                
+                Reservacion reserva = hab.disponible(LocalDate.now());
+                String currentState = "";
+                System.out.println(reserva);
+                if (reserva == null){
+                    currentState = "Disponible";
+                }else if(reserva.getEstado().equals("Check-In")){
+                    currentState = "Reservada";
+                }else if(reserva.getEstado().equals("Check-Out")){
+                    currentState = "Ocupada";
+                }
+                hab.setEstado(currentState);
                 try {
                     FXMLLoader habLoader = new FXMLLoader(getClass().getResource("habitacionBox.fxml"));
                     Parent habPanel = habLoader.load();
                     HabitacionBoxController habController = (HabitacionBoxController) habLoader.getController();
-                    habController.setData(hab.getNumero(), String.valueOf(hab.getPrecio()), hab.getServicios(), hab.getCategoria(), hab.getEstado());
+                    habController.setData(hab.getNumero(), String.valueOf(hab.getPrecio()), hab.getServicios(), hab.getCategoria(), currentState);
                     habController.setHabitacion(hab);
                     content.getChildren().add(habPanel);
                 } catch (IOException ex) {
