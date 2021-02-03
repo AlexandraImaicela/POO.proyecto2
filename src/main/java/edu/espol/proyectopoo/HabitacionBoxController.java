@@ -70,7 +70,7 @@ public class HabitacionBoxController implements Initializable, Configurable {
 
         PrimaryController.primaryController.habSeleccionada = this.habitacion;
 
-        if (this.habitacion.dispoible(PrimaryController.primaryController.getFechaInicio().getValue(), PrimaryController.primaryController.getFechaFinal().getValue())) {
+        if (this.habitacion.disponible(PrimaryController.primaryController.getFechaInicio().getValue(), PrimaryController.primaryController.getFechaFinal().getValue())) {
             FXMLLoader dialog = new FXMLLoader(getClass().getResource("crearReserva.fxml"));
             Parent reservaPanel = dialog.load();
             reservaDialog.getDialogPane().setContent(reservaPanel);

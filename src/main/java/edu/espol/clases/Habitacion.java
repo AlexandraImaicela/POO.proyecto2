@@ -37,6 +37,14 @@ public class Habitacion implements java.io.Serializable{
         this.estado = estado;
     }
     
+    /**
+     * Constructor de la clase, se asume que el estado es disponible al crear una habitacion.
+     * @param numero
+     * @param precio
+     * @param servicios
+     * @param categoria
+     */
+    
     public Habitacion(String numero, float precio, String servicios, String categoria){
         this.numero = numero;
         this.precio = precio;
@@ -85,12 +93,25 @@ public class Habitacion implements java.io.Serializable{
         this.categoria = categoria;
     }
 
+    
+    /**
+     * Retorna un String
+     * @return String que muestra informacion vital para hacer Debugging
+     */
+    
     @Override
     public String toString() {
         return "Habitacion{" + "numero=" + numero + ", precio=" + precio + ", servicios=" + servicios + ", categoria=" + categoria + '}';
     }
     
-    public boolean dispoible(LocalDate fechaInicio, LocalDate fechaFinal){
+    /**
+     * Revisa si la habitacion se encuentra disponible entre dos fechas.
+     * @param fechaInicio Fecha desde la que revisa.
+     * @param fechaFinal Fecha hasta donde se revisa.
+     * @return retorna true si esta disponible, y retorna false si no esta disponible.
+     */
+    
+    public boolean disponible(LocalDate fechaInicio, LocalDate fechaFinal){
         for(Reservacion reserva : this.reservas){
             if(reserva.fechaReservada(fechaInicio) || reserva.fechaReservada(fechaFinal)){
                 return false;
@@ -98,6 +119,12 @@ public class Habitacion implements java.io.Serializable{
         }
         return true;
     }
+    
+    /**
+     * Busca la reserva que esta en una fecha
+     * @param fecha Fehca en la que la reserva debe ocupar
+     * @return Retorna una reserva si se encuentra en esa fecha, caso contrario retorna null.
+     */
     
     public Reservacion disponible(LocalDate fecha){
         for(Reservacion reserva : this.reservas){

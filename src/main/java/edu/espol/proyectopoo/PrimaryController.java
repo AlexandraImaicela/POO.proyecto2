@@ -54,17 +54,37 @@ public class PrimaryController implements Initializable {
     @FXML
     private Label hotelSelec;
 
+    /**
+     *
+     * @return
+     */
+    
     public static DatePicker getInicioFecha() {
         return inicioFecha;
     }
+    
+    /**
+     *
+     * @param inicioFecha
+     */
 
     public static void setInicioFecha(DatePicker inicioFecha) {
         PrimaryController.inicioFecha = inicioFecha;
     }
 
+     /**
+     *
+     * @return
+     */
+    
     public static DatePicker getFinalFecha() {
         return finalFecha;
     }
+    
+    /**
+     *
+     * @param finalFecha
+     */
 
     public static void setFinalFecha(DatePicker finalFecha) {
         PrimaryController.finalFecha = finalFecha;
@@ -88,6 +108,12 @@ public class PrimaryController implements Initializable {
     @FXML
     private Button mostrar;
 
+    /**
+     * Inicializa los elementos dentro de las categorias en el filtro, y carga los hoteles.
+     * @param url
+     * @param rb
+     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         /*Hotel prueba = new Hotel("Hotel Samanes", "Guayaquil", "Samanes 7", "0993346356");
@@ -108,6 +134,11 @@ public class PrimaryController implements Initializable {
         categoriasHab.getItems().add("Triple");
 
     }
+    
+    /**
+     *Esta clase cargas las habitaciones de un hotel respectivo.
+     * @param hotel Hotel que es generalmente el hotel seleccionado.
+     */
 
     public void loadHabitaciones(Hotel hotel) {
         lbcantidad.setText("Habitaciones cargadas");
@@ -153,6 +184,9 @@ public class PrimaryController implements Initializable {
         }
     }
 
+    /**
+     * Carga las habitaciones que se encuentren en el ArrayList Habitaciones dentro del Hotel Seleccionado.
+     */
     public void loadHabitaciones() {
         content.getChildren().clear();
         if (hotelSeleccionado.getHabitaciones() == null || hotelSeleccionado.getHabitaciones().size() == 0) {
@@ -176,7 +210,9 @@ public class PrimaryController implements Initializable {
             }
         }
     }
-
+    /**
+     * Configura los DatePicker y deshabilita las fechas del usurario que se encuentren antes a la fecha del computador del usuario.
+     */
     private void setDate() {
         fechaInicio.setValue(LocalDate.now());
 
@@ -258,7 +294,7 @@ public class PrimaryController implements Initializable {
         Habitacion filtro = new Habitacion(categoriasHab.getValue());
         content.getChildren().clear();
         for (Habitacion hab : this.hotelSeleccionado.getHabitaciones()) {
-            if ((aceptarTodos || hab.equals(filtro)) && hab.dispoible(fechaInicio.getValue(), fechaFinal.getValue())) {
+            if ((aceptarTodos || hab.equals(filtro)) && hab.disponible(fechaInicio.getValue(), fechaFinal.getValue())) {
                 filtrado.add(hab);
             }
         }
@@ -295,6 +331,10 @@ public class PrimaryController implements Initializable {
     private void mostrarTodos(ActionEvent event) {
         loadHabitaciones(this.hotelSeleccionado);
     }
+    
+    /**
+     *  Muestra las reservas dentro del panel, de la habitacion seleccionada.
+     */
     public void mostrarReservas() {
         filtroBox.setVisible(false);
         content.getChildren().clear();

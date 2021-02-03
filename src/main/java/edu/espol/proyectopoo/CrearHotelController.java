@@ -40,10 +40,19 @@ public class CrearHotelController implements Initializable {
     @FXML
     private TextArea direccionHotel;
 
+    /**
+     *
+     * @param url
+     * @param rb
+     */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
+    /*
+    * Crea el hotel con los datos ingresados.
+    */
 
     @FXML
     private void crearhotel(ActionEvent event) {
@@ -55,7 +64,9 @@ public class CrearHotelController implements Initializable {
         telefonoHotel.setText("");
         direccionHotel.setText("");
     }
-
+    /*
+    * Elimina los datos para poder reingresarlos.
+    */
     @FXML
     private void reiniciarbtn(ActionEvent event) {
         nombreHotel.setText("");

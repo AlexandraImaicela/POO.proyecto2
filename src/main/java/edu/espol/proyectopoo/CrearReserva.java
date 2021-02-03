@@ -94,7 +94,10 @@ public class CrearReserva implements Initializable {
         System.out.println(total);
 
     }
-
+    
+    /*
+    * Elimina los datos para poder reingresarlos.
+    */
     @FXML
     private void reiniciarbtn(ActionEvent event) {
         nombreCliente.setText("");
@@ -109,6 +112,10 @@ public class CrearReserva implements Initializable {
         PrimaryController.primaryController.loadHotels();
         window.close();
     }
+    
+    /*
+    * Crea reserva.
+    */
 
     @FXML
     private void reservar(ActionEvent event) {

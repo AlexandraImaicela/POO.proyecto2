@@ -44,8 +44,11 @@ public class CrearHabitacionController implements Initializable {
     private ComboBox<String> categoriaHab;
 
     /**
-     * Initializes the controller class.
+     * Inicializa el controlador y añade las categorias dentro del creador de habitaciones.
+     * @param url
+     * @param rb
      */
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         categoriaHab.getItems().add("Matrimonial");
@@ -54,6 +57,9 @@ public class CrearHabitacionController implements Initializable {
         categoriaHab.getItems().add("Triple");
     }
 
+     /*
+    * Crea la habitacion respectiva.
+    */
     @FXML
     private void crearhotel(ActionEvent event) {
         Habitacion newHab = new Habitacion(numeroHab.getText(), Float.valueOf(precioHab.getText()), serviciosHab.getText(), categoriaHab.getSelectionModel().getSelectedItem());
@@ -87,7 +93,9 @@ public class CrearHabitacionController implements Initializable {
         }
 
     }
-
+    /*
+    * Elimina los datos para poder reingresarlos.
+    */
     @FXML
     private void reiniciarbtn(ActionEvent event) {
         numeroHab.setText("");

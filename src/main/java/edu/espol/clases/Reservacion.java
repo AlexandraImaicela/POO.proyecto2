@@ -131,7 +131,10 @@ public class Reservacion implements java.io.Serializable {
         }
         return true;
     }
-    
+    /**
+     * Obtiene cuantos dias hay entre 2 fechas
+     * @return dias entre la fecha inicial y final de la reserva
+     */
     public int getDiferenciaFechas(){
         return fechaFin.compareTo(fechaInicio);
     }

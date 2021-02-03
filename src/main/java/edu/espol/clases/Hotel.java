@@ -93,7 +93,9 @@ public class Hotel implements java.io.Serializable {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-
+    /**
+     * Carga y deserializa los hoteles, habitaciones y reservas guardados.
+     */
     public static void cargarHoteles() {
 
         try {
@@ -108,6 +110,10 @@ public class Hotel implements java.io.Serializable {
         } catch (ClassNotFoundException ex) {
         }
     }
+    
+    /**
+     * Guarda la informacion sobre los hoteles, habitaciones y reservas.
+     */
 
     public static void guardarHoteles() {
         try {
