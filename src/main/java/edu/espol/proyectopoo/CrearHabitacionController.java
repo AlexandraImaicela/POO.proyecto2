@@ -12,6 +12,7 @@ import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -56,13 +57,35 @@ public class CrearHabitacionController implements Initializable {
     @FXML
     private void crearhotel(ActionEvent event) {
         Habitacion newHab = new Habitacion(numeroHab.getText(), Float.valueOf(precioHab.getText()), serviciosHab.getText(), categoriaHab.getSelectionModel().getSelectedItem());
-        
-        PrimaryController.primaryController.hotelSeleccionado.getHabitaciones().add(newHab);
-        Hotel.guardarHoteles();
-        numeroHab.setText("");
-        precioHab.setText("");
-        serviciosHab.setText("");
-        categoriaHab.getSelectionModel().clearSelection();
+
+        boolean yaExiste = false;
+
+        for (Habitacion hab : PrimaryController.primaryController.hotelSeleccionado.getHabitaciones()) {
+            if (newHab.getNumero().equals(hab.getNumero())) {
+                yaExiste = true;
+            } else {
+                yaExiste = yaExiste || false;
+            }
+        }
+
+        if (yaExiste) {
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Aviso de sistema");
+            alert.setContentText("Habitacion ya existe, use otro numero!");
+            alert.showAndWait();
+
+
+            numeroHab.setText("");
+        } else {
+
+            PrimaryController.primaryController.hotelSeleccionado.getHabitaciones().add(newHab);
+            Hotel.guardarHoteles();
+            numeroHab.setText("");
+            precioHab.setText("");
+            serviciosHab.setText("");
+            categoriaHab.getSelectionModel().clearSelection();
+        }
+
     }
 
     @FXML
