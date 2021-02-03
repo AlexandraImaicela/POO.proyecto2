@@ -6,10 +6,11 @@
 package edu.espol.clases;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  *
- * @author 
+ * @author Alexandra Imaicela
  */
 public class Reservacion implements java.io.Serializable {
 
@@ -105,6 +106,30 @@ public class Reservacion implements java.io.Serializable {
             return true;
         }
         return false;
+    }
+    
+     @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Reservacion other = (Reservacion) obj;
+        if (!Objects.equals(this.Estado, other.Estado)) {
+            return false;
+        }
+        return true;
     }
     
     public int getDiferenciaFechas(){
