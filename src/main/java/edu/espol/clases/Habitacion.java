@@ -98,6 +98,15 @@ public class Habitacion implements java.io.Serializable{
         }
         return true;
     }
+    
+    public Reservacion disponible(LocalDate fecha){
+        for(Reservacion reserva : this.reservas){
+            if(reserva.fechaReservada(fecha) && !reserva.getEstado().equals("Reserva finalizada")){
+                return reserva;
+            }
+        }
+        return null;
+    }
 
     @Override
     public int hashCode() {
