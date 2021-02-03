@@ -5,6 +5,7 @@
  */
 package edu.espol.proyectopoo;
 
+import edu.espol.clases.Hotel;
 import edu.espol.clases.Reservacion;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,6 +54,7 @@ public class reservasBoxController implements Initializable, Configurable {
 
     @FXML
     private void check(ActionEvent event) {
+        checkbtn.setText(this.thisReserva.getEstado());
 
         if (this.thisReserva.getEstado().equals("Check-In")) {
             this.thisReserva.setEstado("Check-Out");
@@ -73,11 +75,20 @@ public class reservasBoxController implements Initializable, Configurable {
 
             alert.showAndWait();
         }
-        
+
         reloadButton();
+        Hotel.guardarHoteles();
 
     }
+    
+    public Button getCheckbtn() {
+        return checkbtn;
+    }
 
+    public void setCheckbtn(Button checkbtn) {
+        this.checkbtn = checkbtn;
+    }
+    
     @FXML
     private void seleccionarHotel(MouseEvent event) {
     }

@@ -306,6 +306,10 @@ public class PrimaryController implements Initializable {
                 reservasBoxController controller = (reservasBoxController) reservaLoader.getController();
                 controller.setData(reserva.getNombre(), reserva.getFechaInicio().toString(), reserva.getFechaFin().toString());
                 controller.setThisReserva(reserva);
+                controller.getCheckbtn().setText(reserva.getEstado());
+                if (reserva.getEstado().equals("Reserva finalizada")){
+                    controller.getCheckbtn().setDisable(true);
+                }
                 content.getChildren().add(reservaPanel);
             } catch (IOException ex) {
                 ex.printStackTrace();
